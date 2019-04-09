@@ -60,7 +60,7 @@ getTabs(tabURL)
 					let endIndex = store.indexOf(endString)
 					// Some magic to crop the store down to just the song chords
 					let chords = store.substring(startIndex + startString.length + 2, endIndex - 2)
-					
+					console.log(chords)
 					return chords
 				}
 				getInfo()

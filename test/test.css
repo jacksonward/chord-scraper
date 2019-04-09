@@ -1,0 +1,26 @@
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    line-height: 1.4em;
+    margin: 0;
+    font-family: 'Roboto Mono', monospace;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+} 
+
+.chord {
+	font-weight: 700;
+	background-color: #e0e0e0;
+	padding: 2px;
+	color: black;
+	border-radius: 2px;
+	padding: .1em .5em .15em;
+	margin: -.1em -.5em -.15em;
+}
