@@ -4,7 +4,7 @@ const fs = require('fs')
 const admin = require('firebase-admin')
 
 // Initialize Firestore
-const serviceAccount = require('./chordapp-1905d-firebase-adminsdk-sy9ql-c62c2cca9b.json')
+const serviceAccount = require('./fbKey/chordapp-1905d-firebase-adminsdk-sy9ql-e1ce2746e7.json')
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -14,6 +14,7 @@ admin.initializeApp({
 const db = admin.firestore()
 // Initialize firestore collection ref
 const colRef = db.collection('songs')
+const infRef = db.collection('info')
 
 const tabURL = process.argv[2]
 
@@ -101,13 +102,20 @@ const parseChordsWeb = (chords) => {
 	parsedChords = parsedChords.replace(/\\/g, '')
 	data.chords.web = parsedChords
 
-	// Write to firestore database
+	// Write all song data to firestore database
 	let docRef = colRef.doc(data.songName)
 	docRef.set({
 		songName: data.songName,
 		artist: data.artist,
 		webChords: data.chords.web
 	}, {merge:true})
+
+	// Write basic song info to a separate collection for faster retrieval in app
+	let idRef = infRef.doc(data.songName)
+	idRef.set({
+		songName: data.songName,
+		artist: data.artist
+	}, { merge: true })
 
 }
 
